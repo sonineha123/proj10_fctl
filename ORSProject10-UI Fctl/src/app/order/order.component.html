@@ -1,0 +1,180 @@
+<app-navbar></app-navbar>
+
+<style>
+  .grad {
+    background-image: linear-gradient(to bottom right, rgb(199, 7, 110), rgb(41, 41, 41));
+    background-repeat: no repeat;
+    background-size: 100%;
+    padding-bottom: 25px;
+  }
+</style>
+
+<style type="text/css">
+  .log1 {
+    padding-top: 13%;
+  }
+
+  .input-group-addon {
+    box-shadow: 9px 8px 7px #001a33;
+
+  }
+</style>
+
+<div class="row " style="padding-top: 2%; padding-bottom:2%;
+background: url(assets/files/bg6000.jpg) no-repeat center center;
+background-attachment: fixed;
+background-size: cover;width:100%;
+  height: auto;">
+
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body input-group-addon grad ">
+        <form name="orderForm">
+          <h2 *ngIf="!form.data.id>0" class="text-primary font-weight-bold" style="text-align: center;">{{'Add Order' |
+            translate }}</h2>
+          <h2 *ngIf="form.data.id>0" class="text-primary font-weight-bold" style="text-align: center;">{{'Update Order' |
+            translate }}</h2>
+
+
+          <div *ngIf="!form.error && form.message != null" class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{form.message}}
+          </div>
+
+          <div *ngIf="form.error && form.message != null" class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{form.message}}
+          </div>
+
+          <!-- <div>
+            <span class="pt-2"><b>{{'Role Name' | translate }}</b>
+              <span class="required-field"></span></span>
+            <div class="col-sm-12">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-user grey-text"></i> </div>
+                </div>
+
+
+                <select class="form-control" name="roleId" [(ngModel)]="form.data.roleId" aria-label="ngSelected">
+                  <option [ngValue]="" value="undefined">{{' Select Role' | translate }}</option>
+                  <option *ngFor="let obj of form.preload.roleList" [value]="obj.key">{{obj.value}}</option>
+                </select>
+              </div>
+            </div>
+            <span *ngIf="form.inputerror.roleId != null" class="alertRedColor" style=" color: red;"> {{'role'|
+              translate}} </span>
+            <!-- <span class="alertRedColor"> {{form.inputerror.roleId}} </span> -->
+       <!---   </div> -->
+
+          <div>
+            <span class="pt-2"><b>{{'Order Id' | translate }}</b>
+              <span class="required-field"></span></span>
+            <div class="col-sm-12">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-receipt grey-text"></i> </div>
+                </div>
+                <input type="text" name="orderid" [(ngModel)]="form.data.orderId" class="form-control"
+                  placeholder="{{'Enter Order Id'  | translate }}">
+              </div>
+            </div><span *ngIf="form.inputerror.orderId != null" class="alertRedColor" style=" color: red;">
+              {{'orderid '| translate}} </span>
+            
+          </div>
+
+          <div>
+            <span class="pt-2"><b>{{'Customer Name' | translate }}</b>
+              <span class="required-field"></span></span>
+            <div class="col-sm-12">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-user-circle grey-text"></i> </div>
+                </div>
+                <input type="text" name="customername" [(ngModel)]="form.data.customerName" class="form-control"
+                  placeholder="{{'Enter Customer Name'  | translate }}">
+              </div>
+            </div><span *ngIf="form.inputerror.customerName != null" class="alertRedColor" style=" color: red;">
+              {{'customername'| translate}} </span>
+            
+          </div>
+
+          <div>
+            <span class="pt-2"><b>{{'items' | translate }}</b>
+              <span class="required-field"></span></span>
+
+            <div class="col-sm-12">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-boxes items-icon grey-text"></i> </div>
+                </div>
+                <input type="text" name="items" [(ngModel)]="form.data.items" class="form-control"
+                  placeholder="{{'Enter Items'  | translate }}">
+              </div>
+            </div><span *ngIf="form.inputerror.items != null" class="alertRedColor" style=" color: red;"> {{'items'|
+              translate}} </span>
+            
+          </div>
+
+          <div>
+            <span class="pt-2"><b>{{'Payment Method' | translate }}</b>
+              <span class="required-field"></span></span>
+
+            <div class="col-sm-12">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-credit-card payment-method-icon grey-text"></i> </div>
+                </div>
+                <input type="city" name="paymentmethod" [(ngModel)]="form.data.paymentMethod" class="form-control"
+                  placeholder="{{'Enter PaymentMethod'  | translate }}">
+              </div>
+            </div><span *ngIf="form.inputerror.paymentMethod != null" class="alertRedColor" style=" color: red;">
+              {{'paymentMethod'| translate}} </span>
+           
+          </div>
+
+          <div>
+            <span class="pt-2"><b>{{'OrderStatus' | translate }}</b>
+              <span class="required-field"></span></span>
+
+            <div class="col-sm-12">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-shipping-fast order-status-icon shipped grey-text"></i> </div>
+                </div>
+                <input type="text" name="state" maxlength="10" [(ngModel)]="form.data.orderStatus" class="form-control"
+                  placeholder="{{'Enter OrderStatus' | translate}}">
+              </div>
+            </div><span *ngIf="form.inputerror.orderStatus != null" class="alertRedColor" style=" color: red;"> {{'orderStatus'|
+              translate}} </span>
+          
+          </div>
+
+          <div class="row pt-2 pl-2 pb-3">
+
+            <div class="col-md-3"></div>
+
+            <div class="pt-2">
+              <button *ngIf="!form.data.id>0" (click)="onUpload()" class="btn btn-success mr-2">
+                {{'Save' | translate }}</button>
+            </div>
+
+            <div class="col-md-1"></div>
+
+            <div class="pt-2">
+              <button *ngIf="form.data.id>0" (click)="onUpload()" class="btn btn-success mr-2">
+                {{'Update' | translate }}</button>
+            </div>
+            <div class="pt-2">
+              <a class="btn btn-warning mr-1" type="button" [routerLink]="['/orderlist']"
+                  style="text-decoration: none; color: white;">{{'List' | translate }}</a>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
